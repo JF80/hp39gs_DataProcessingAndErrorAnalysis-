@@ -1,0 +1,81 @@
+HP39AscD 8 OutliersMSGBOX"input the date in L3":
+PROMPT L3:
+SIZE(L3)\|>D:((\GSLIST(L3))/D\|>B:
+(L3 - B)\|>L4:
+\v/((\GSLIST((L4)\178))/(D-1))\|>C:
+1\|>A:
+ CHOOSE  A;"why is Outliers\163\191";"PauTa\163\1683s";"Grubbs";"Dixon":
+CASE
+IF A==1 THEN SORT(L4)\|> L4:REVERSE(L4)\|> L4:IF (ABS(L4(1))) >(C*3) THEN MSGBOX L4(1)" IS Outlier":ELSE REVERSE(L4)\|> L4:IF (ABS(L4(1))) >(C*3) THEN  MSGBOX L4(1)" IS Outlier": ELSE MSGBOX"There is no Outlier in date":END:END:END 
+IF A==2
+  THEN
+  SORT(L3):
+  MSGBOX"input G(i)":
+  PROMPT F:
+  IF ((B-L3(1))/C)>F OR ((B-L3(1))/C)==F
+  THEN REVERSE (L3) \|> L3:
+MSGBOX L3(1)"is Outlier":
+  ELSE REVERSE (L3) \|> L3: IF ((L3(1)-B)/C)>F OR ((L3(1)-B)/C)>F THEN
+   REVERSE (L3) \|> L3:
+  MSGBOX L3(1) "is Outliers":
+  ELSE MSGBOX "There is not Outliers":
+  END:
+ END: END IF A==3
+    THEN (SORT(L3))\|>(L4):
+    MSGBOX"input d(n,a)":
+    
+    PROMPT G:
+    MSGBOX"You must input the FIRST  3 numbers":
+MSGBOX "INPUT FIRST TO THIRD": REVERSE(L4) \|> L4 :
+    MSGBOX L4"FIRST":
+    PROMPT K:
+    MSGBOX L4"And":
+    PROMPT Y:
+    MSGBOX L4"Last":
+    PROMPT J:
+
+ REVERSE(L4) \|> L4: IF D<7 OR D==7 THEN
+ IF ((K - Y)/(K - L4(1))>G) THEN 
+ MSGBOX K"is Outlier":
+ ELSE
+ 
+ IF ((L4(1-L4(2))/(L4(1)-K)>G) THEN 
+ MSGBOX L4(1)"is Outliers":
+ ELSE
+ MSGBOX "There is not Outlier":
+ END:
+ END:
+ ELSE
+ IF (D<10 OR D==10) AND (D>8 OR D==8) THEN
+ IF ((K -Y)/(K -L4(2))>G) THEN 
+ MSGBOX L4(D)"is Outlier":
+ ELSE
+ IF ((L4(1) - L4(2))/(L4(1)-Y)>G) THEN 
+ MSGBOX L4(1)"is Outliers":
+ ELSE
+ MSGBOX "There is not Outlier":
+ END:
+ END:
+ ELSE
+ IF (D>11 OR D==11) AND (D<13 OR D==13) THEN
+ IF ((K -J)/(K -L4(2))>G) THEN MSGBOX K"is Outlier":
+ ELSE
+ IF ((L4(1)-L4(3))/(L4(1)-Y)>G) THEN
+ MSGBOX L4(1)"is Outliers":
+ ELSE
+ MSGBOX "There is not Outlier":
+ END:
+ END:
+ ELSE
+ IF (D>14 OR D==14) THEN
+ IF ((K-J))/(K-L4(3)) >G THEN
+ MSGBOX L4(D)"is Outlier":
+ ELSE
+  IF ((L4(1-L4(3))/(L4(1)-J)> G) THEN
+ MSGBOX L4(1)"is Outlier":
+ ELSE
+ MSGBOX "There is not Outlier":
+ 
+ END:
+ END:       END: END
+ END:
