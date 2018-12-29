@@ -1,8 +1,12 @@
 HP39AscD 8 OutliersMSGBOX"input the date in L3":
 PROMPT L3:
 SIZE(L3)\|>D:((\GSLIST(L3))/D\|>B:
+MSGBOX "average value is"B:
 (L3 - B)\|>L4:
+MSGBOX "Residual(v) IN L4":MSGBOX L4" " 
+ : 
 \v/((\GSLIST((L4)\178))/(D-1))\|>C:
+MSGBOX "standard deviation(s)"C:
 1\|>A:
  CHOOSE  A;"why is Outliers\163\191";"PauTa\163\1683s";"Grubbs";"Dixon":
 CASE
