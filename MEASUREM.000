@@ -1,0 +1,33 @@
+HP39AscD 11 MeasurementMSGBOX"input the date in L5":
+PROMPT L5:
+SIZE(L5)\|>N:(\GSLIST(L5))/N\|>M:
+(L5 - M)\|>L6:
+(\v/((\GSLIST((L6)\178))/((N-1))))\|>V:
+1\|>P:
+CHOOSE  P;"Measurement method\163\191";"Equal precision";"Unequal precision":
+CASE
+IF P==1 THEN
+MSGBOX"t(v=unlimited\163\172a=0.05)=2":
+MSGBOX"t(v=unlimited\163\172a=0.01)=3":
+MSGBOX"And you will input the t Confidence factor":
+PROMPT T:
+MSGBOX "Extended uncertainty Up="T*V:
+MSGBOX "Measurement result X="M"+(-)"T*V :
+END
+IF P==2 THEN
+MSGBOX"Input the Weights as L7":
+PROMPT L7:
+((\GSLIST(L5 * L7))/(\GSLIST(L7)))\|>Z:
+MSGBOX"The average value is " Z:
+(\v/(\GSLIST(((L6)\178)*(L7))/(N-1)))\|>V:
+
+(V / (\v/(\GSLIST(L7))))\|>I:
+MSGBOX "Standard uncertainty of the X mean is":
+MSGBOX "S(x mean)="I:
+MSGBOX"And you will input the t Confidence factor":
+PROMPT T:
+MSGBOX "Extended uncertainty U="T*I:
+MSGBOX "Measurement result X(mean)="M:
+MSGBOX "+(-)"T*I",v=" N-1 ",k="T:
+END
+END:
