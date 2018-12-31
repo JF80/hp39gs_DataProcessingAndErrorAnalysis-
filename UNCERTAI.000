@@ -1,0 +1,43 @@
+HP39AscD 11 Uncertainty1\|>Q:
+CHOOSE  Q;"Assessment method?";"ClassA";"ClassB-irrelevant";"ClassB-correlation":
+CASE
+IF Q==1 THEN MSGBOX"input the date in L1":
+PROMPT L1:
+SIZE(L1)\|>N: (\GSLIST(L1))/N\|>M:
+ (L1 - M)\|>L2:
+(\v/((\GSLIST((L2)\178))/(N*(N-1))))\|>V:
+
+MSGBOX "Degree of freedom is n-t":
+MSGBOX "Uncertainty is"V:
+END
+IF Q==2 THEN
+MSGBOX "Input the standard uncertainty":
+PROMPT L3:
+MSGBOX "Input the Degree of freedom":
+PROMPT L8:
+MSGBOX "Input Sensitivity coefficients as a list":
+PROMPT L9 :
+(\v/(\GSLIST((L9*(L3))\178)))\|>F:
+MSGBOX "Synthetic standard uncertainty is":
+MSGBOX "U="F:
+((F^4))/(\GSLIST(((L9*L3)^4)/L8))\|>E:
+MSGBOX "Effective degree of freedom is":
+MSGBOX"V="E:
+END
+IF Q==3 THEN
+MSGBOX "Input the standard uncertainty":
+PROMPT L3:
+MSGBOX "Input the Degree of freedom":
+PROMPT L8:
+MSGBOX "Input Sensitivity coefficients as a list":
+ PROMPT L9:
+((\GSLIST((L9*(L3))\178)))\|>F:
+MSGBOX "Sorry,limited by author level and function":
+MSGBOX"You must inputRelated component.the formula is":
+MSGBOX"2\GS(N-1,i=1)\GS(N,J=I+1)C(I)C(J)u(Xi)u(Xj)r(Xi,Xj)":
+MSGBOX"And now you will input..":
+PROMPT S:
+MSGBOX "Synthetic standard uncertainty is":
+MSGBOX "U="\v/(F+S):
+END
+END:
