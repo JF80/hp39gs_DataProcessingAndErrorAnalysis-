@@ -1,0 +1,19 @@
+HP39AscD 12 LeastSquaresMSGBOX"Input The NUMBER Of X":
+PROMPT K:
+MSGBOX"EDIT THE COEF": 
+
+EDITMAT M4:     MSGBOX"Input Measurement data array L":       EDITMAT M3:
+(INVERSE(TRN(M4)*(M4)))\|>M8:
+((M8)*(TRN(M4))*(M3))\|>M5:
+MSGBOX "XMATRIX="M5:
+(M3-(M4*(M5))) \|> M6:
+MSGBOX "Residual rror matrix":
+MSGBOX M6:
+((TRN(M6)*((M6)/K)))\|>M7:
+\v/(M7(1,1))\|>W:
+MSGBOX "Standard deviation":
+MSGBOX "="W :
+MSGBOX"d11 =" M8(1,1):MSGBOX"d22="M8(2,2): MSGBOX"d33="M8(3,3):
+MSGBOX"Experimental standard deviation":
+MSGBOX"="W*((M8(1,1))^0.5):
+
